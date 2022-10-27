@@ -1,0 +1,28 @@
+[tool.poetry]
+name = "metrics-render"
+version = "0.1.2"
+description = ""
+authors = ["laixintao <laixintaoo@gmail.com>"]
+readme = "README.md"
+packages = [{include = "metrics_render"}]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+plotly = "^5.10.0"
+flask = "^2.2.2"
+click = "^8.1.3"
+waitress = "^2.1.2"
+requests = "^2.28.1"
+promqlpy = "^1.0.5"
+kaleido = "0.2.1"
+prometheus-client = "^0.15.0"
+boto3 = "^1.25.3"
+minio = "^7.1.12"
+
+
+[tool.poetry.group.dev.dependencies]
+ipdb = "^0.13.9"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
