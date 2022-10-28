@@ -4,4 +4,4 @@ clean:
 patch: clean
 	bumpversion patch
 	poetry build
-	poetry publish -r garena
+	poetry publish -r pypi
