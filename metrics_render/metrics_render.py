@@ -20,10 +20,6 @@ logger = logging.getLogger(__name__)
 class MetricsRender:
     def __init__(self, config_path) -> None:
         self.global_config = load_config(config_path)
-        self.image_path = Path(self.global_config["image_path"])
-        if not self.image_path.exists():
-            logger.info(f"Image path {self.image_path} not exist, creating...")
-            self.image_path.mkdir(parents=True, exist_ok=True)
         self.minio = Minio(
             self.global_config["s3_domain"],
             access_key=self.global_config["s3_access_key"],

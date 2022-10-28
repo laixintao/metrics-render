@@ -2,6 +2,7 @@ import sys
 import click
 import logging
 from flask import Flask, make_response, request
+import waitress
 
 from metrics_render.metrics_render import MetricsRender
 
@@ -12,6 +13,10 @@ def create_app(config_path):
     )
     metricsrender = MetricsRender(config_path)
     config_log(logging.DEBUG)
+
+    @app.route("/ping")
+    def ping():
+        return "pong"
 
     @app.route("/render")
     def render():
@@ -57,12 +62,13 @@ def main(log_level):
 @click.option("--port", "-p", default=8080, help="The port to bind to.")
 @click.option("--connection-limit", "-c", default=1000, help="Server connection limit")
 @click.option("--threads", "-t", default=64, help="Server threads")
-@click.argument(
-    "root_dir",
-    type=click.Path(exists=True, file_okay=False, dir_okay=True),
+@click.option(
+    "--config-path",
+    required=True,
+    type=click.Path(exists=True, file_okay=True, dir_okay=False),
 )
-def serve(host, port, connection_limit, threads):
-    app = create_app()
+def serve(host, port, connection_limit, threads, config_path):
+    app = create_app(config_path)
     waitress.serve(
         app,
         host=host,
