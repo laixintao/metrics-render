@@ -1,0 +1,10 @@
+{
+  "s3_domain": "http://",
+  "s3_access_key": "123",
+  "s3_secret": "123",
+  "s3_bucket": "bucket",
+  "s3_image_prefix": "metric_images",
+  "prom_named_datasources": {
+    "universal": "http"
+  }
+}
